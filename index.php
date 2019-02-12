@@ -12,13 +12,14 @@ else {
 
 $path = "./includes/";
 $contenu = glob($path . "*.inc.php");
-var_dump($contenu);
+$page = $path . $page . ".inc.php";
 
+if (in_array($page, $contenu)) {
+    include $page;
+}
 
-
-
-
-$page = "./includes/" . $page . ".php";
-include $page;
+else {
+    include "./includes/accueil.inc.php";
+}
 
 include "./includes/footer.php";
