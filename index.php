@@ -1,15 +1,24 @@
-<ul>
-    <li><a href="index.php?page=truc">Truc</a></li>
-    <li><a href="index.php?page=machin">Machin</a></li>
-    <li><a href="index.php?page=michel">Michel</a></li>
-</ul>
 <?php
+date_default_timezone_set('Europe/Paris');
+include "./includes/header.php";
 
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
-    echo $page;
 }
 
 else {
-    echo "Message";
+    $page = "accueil";
 }
+
+$path = "./includes/";
+$contenu = glob($path . "*.inc.php");
+var_dump($contenu);
+
+
+
+
+
+$page = "./includes/" . $page . ".php";
+include $page;
+
+include "./includes/footer.php";
