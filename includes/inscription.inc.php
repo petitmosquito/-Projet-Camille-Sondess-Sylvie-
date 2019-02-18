@@ -31,12 +31,9 @@ if (isset($_POST['maurice'])) {
         echo $message;
 
         include "frmInscription.php";
-    }
-
-    else {
+    } else {
         echo "Insertion en BDD";
     }
-
 
 
 } else {
