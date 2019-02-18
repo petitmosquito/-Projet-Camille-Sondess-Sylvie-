@@ -40,7 +40,12 @@ if (isset($_POST['maurice'])) {
                 (USENOM, USEPRENOM, USEMAIL, USEPASSWORD)
                 VALUES ('" . $nom . "', '" . $prenom . "', '" . $mail . "', '" . $mdp . "')";
 
-        var_dump($sql);
+        $query = $pdo->prepare($sql);
+        $query->bindValue('USENOM', $nom, PDO::PARAM_STR);
+        $query->bindValue('USEPRENOM', $prenom, PDO::PARAM_STR);
+        $query->bindValue('USEMAIL', $mail, PDO::PARAM_STR);
+        $query->bindValue('USEPASSWORD', $mdp, PDO::PARAM_STR);
+        $query->execute();
     }
 
 
