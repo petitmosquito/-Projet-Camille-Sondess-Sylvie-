@@ -36,7 +36,11 @@ if (isset($_POST['maurice'])) {
 
         include "frmInscription.php";
     } else {
-        echo "Insertion en BDD";
+        $sql =  "INSERT INTO T_USERS
+                (USENOM, USEPRENOM, USEMAIL, USEPASSWORD)
+                VALUES ($nom, $prenom, $mail, $mdp)";
+
+        var_dump($sql);
     }
 
 
