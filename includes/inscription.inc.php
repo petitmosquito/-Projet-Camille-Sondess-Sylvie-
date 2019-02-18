@@ -46,6 +46,8 @@ if (isset($_POST['maurice'])) {
         $query->bindValue('USEMAIL', $mail, PDO::PARAM_STR);
         $query->bindValue('USEPASSWORD', $mdp, PDO::PARAM_STR);
         $query->execute();
+
+        echo "Coucou c'est bien enregistré !";
     }
 
 
