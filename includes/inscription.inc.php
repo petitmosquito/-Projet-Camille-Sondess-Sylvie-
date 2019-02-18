@@ -38,7 +38,7 @@ if (isset($_POST['maurice'])) {
     } else {
         $sql =  "INSERT INTO T_USERS
                 (USENOM, USEPRENOM, USEMAIL, USEPASSWORD)
-                VALUES ($nom, $prenom, $mail, $mdp)";
+                VALUES ('" . $nom . "', '" . $prenom . "', '" . $mail . "', '" . $mdp . "')";
 
         var_dump($sql);
     }
