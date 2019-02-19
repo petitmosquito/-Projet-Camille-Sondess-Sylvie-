@@ -36,7 +36,9 @@ if (isset($_POST['barnabe'])) {
         $hash = $pdo->query($getPassword)->fetchColumn();
 
         if (password_verify($mdp, $hash)) {
-            echo "Michel !";
+            $_SESSION['login'] = 1;
+            $redirection = "<script>document.location.href='http://localhost/PHP1/'</script>";
+            echo $redirection;
         }
 
         else {
