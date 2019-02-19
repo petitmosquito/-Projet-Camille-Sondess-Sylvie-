@@ -30,10 +30,12 @@ if (isset($_POST['barnabe'])) {
     } else {
         echo "Test matching login/password";
 
-        $getPassword =  "SELECT USEPASSWORD FROM t_users
+        $getDatas =  "SELECT * FROM t_users
                         WHERE USEMAIL='". $mail . "'";
 
-        $hash = $pdo->query($getPassword)->fetchColumn();
+        $result = $pdo->query($getDatas)->fetchAll();
+        var_dump($result);
+
 
         if (password_verify($mdp, $hash)) {
             $_SESSION['login'] = 1;
