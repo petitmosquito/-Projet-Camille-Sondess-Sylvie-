@@ -52,7 +52,16 @@ if (isset($_POST['maurice'])) {
             $query->bindValue('USEPASSWORD', $mdp, PDO::PARAM_STR);
             $query->execute();
 
-            echo "Coucou c'est bien enregistré !";
+            $msg = "Inscription OK";
+            $sujet = "Validation de votre inscription";
+
+            if (mail($mail, $sujet, $msg)) {
+                echo "Inscription OK";
+            }
+
+            else {
+                echo "Probleme d'inscription";
+            }
 
         }
 
