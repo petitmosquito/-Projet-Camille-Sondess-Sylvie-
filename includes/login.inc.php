@@ -29,14 +29,20 @@ if (isset($_POST['barnabe'])) {
         include "frmLogin.php";
     } else {
         echo "Test matching login/password";
-        $mdp = password_hash($mdp, PASSWORD_DEFAULT);
-        $sql = "SELECT COUNT(*) FROM t_users
-                WHERE USEMAIL='". $mail . "'
-                AND USEPASSWORD='" . $mdp ."'";
-        $nombreOccurences = $pdo->query($sql)->fetchColumn();
 
+        $getPassword =  "SELECT USEPASSWORD FROM t_users
+                        WHERE USEMAIL='". $mail . "'";
 
-    }
+        $hash = $pdo->query($getPassword)->fetchColumn();
+
+        if (password_verify($mdp, $hash)) {
+            echo "Michel !";
+        }
+
+        else {
+            echo "L'adresse et le mot de passe ne correspondent pas.";
+        }
+  }
 
 } else {
     require_once "frmLogin.php";
