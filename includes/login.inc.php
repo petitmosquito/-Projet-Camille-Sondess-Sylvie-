@@ -29,9 +29,11 @@ if (isset($_POST['barnabe'])) {
         include "frmLogin.php";
     } else {
         echo "Test matching login/password";
-
-        //$sql = "SELECT COUNT(*) FROM t_users WHERE USEMAIL='". $mail . "'";
-        //$nombreOccurences = $pdo->query($sql)->fetchColumn();
+        $mdp = password_hash($mdp, PASSWORD_DEFAULT);
+        $sql = "SELECT COUNT(*) FROM t_users
+                WHERE USEMAIL='". $mail . "'
+                AND USEPASSWORD='" . $mdp ."'";
+        $nombreOccurences = $pdo->query($sql)->fetchColumn();
 
 
     }
