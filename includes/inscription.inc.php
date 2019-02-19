@@ -36,22 +36,32 @@ if (isset($_POST['maurice'])) {
 
         include "frmInscription.php";
     } else {
-        $sql =  "INSERT INTO T_USERS
+        $sql = "SELECT COUNT(*) FROM t_users WHERE USEMAIL='". $mail . "'";
+        $nombreOccurences = $pdo->query($sql)->fetchColumn();
+
+        if ($nombreOccurences == 0) {
+            $mdp = password_hash($mdp, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO T_USERS
                 (USENOM, USEPRENOM, USEMAIL, USEPASSWORD)
                 VALUES ('" . $nom . "', '" . $prenom . "', '" . $mail . "', '" . $mdp . "')";
 
-        $query = $pdo->prepare($sql);
-        $query->bindValue('USENOM', $nom, PDO::PARAM_STR);
-        $query->bindValue('USEPRENOM', $prenom, PDO::PARAM_STR);
-        $query->bindValue('USEMAIL', $mail, PDO::PARAM_STR);
-        $query->bindValue('USEPASSWORD', $mdp, PDO::PARAM_STR);
-        $query->execute();
+            $query = $pdo->prepare($sql);
+            $query->bindValue('USENOM', $nom, PDO::PARAM_STR);
+            $query->bindValue('USEPRENOM', $prenom, PDO::PARAM_STR);
+            $query->bindValue('USEMAIL', $mail, PDO::PARAM_STR);
+            $query->bindValue('USEPASSWORD', $mdp, PDO::PARAM_STR);
+            $query->execute();
 
-        echo "Coucou c'est bien enregistré !";
+            echo "Coucou c'est bien enregistré !";
+
+        }
+
+        else {
+            echo "Vous êtes déjà dans la BDD";
+        }
+
     }
-
 
 } else {
     require_once "frmInscription.php";
 }
-
