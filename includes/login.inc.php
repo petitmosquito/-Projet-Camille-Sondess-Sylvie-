@@ -33,11 +33,14 @@ if (isset($_POST['barnabe'])) {
         $getDatas =  "SELECT * FROM t_users
                         WHERE USEMAIL='". $mail . "'";
 
-        $result = $pdo->query($getDatas)->fetchAll();
-        var_dump($result);
+        $result = $pdo->query($getDatas)->fetch(PDO::FETCH_ASSOC);
+
+        $_SESSION['nom'] = $result['USENOM'];
+        $_SESSION['prenom'] = $result['USEPRENOM'];
+        $hash = $result['USEPASSWORD'];
 
 
-        if (password_verify($mdp, $hash)) {
+       if (password_verify($mdp, $hash)) {
             $_SESSION['login'] = 1;
             $redirection = "<script>document.location.href='http://localhost/PHP1/'</script>";
             echo $redirection;
